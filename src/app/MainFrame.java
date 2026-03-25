@@ -19,7 +19,7 @@ import java.io.InputStream;
  * 
  * TODO for Student 2:
  * - Customize the look and feel (colors, fonts, window size)
- * - Add a menu bar if desired (File > Exit, Help > About)
+ * - Add a menu bar if desired (File > Exit, Help > About) - done
  * - Add an application icon
  * - Improve the overall layout and styling
  */
@@ -45,7 +45,26 @@ public class MainFrame extends JFrame {
 
     add(tabbedPane, BorderLayout.CENTER);
   }
+    private static JMenu createEditMenu() {
+        JMenu editMenu = new JMenu("Help");
+        JMenuItem helpItem = new JMenuItem("Help");
+        editMenu.add(helpItem);
+        return editMenu;
+    }
 
+    private static JMenu createFileMenu() {
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem exitItem = new JMenuItem("Exit");
+        fileMenu.add(exitItem);
+        return fileMenu;
+    }
+
+    private static JMenuBar createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(createFileMenu());
+        menuBar.add(createEditMenu());
+        return menuBar;
+    }
   public static void main(String[] args) {
     // Use the system look-and-feel for a native appearance
     try {
@@ -55,6 +74,7 @@ public class MainFrame extends JFrame {
 
     SwingUtilities.invokeLater(() -> {
       MainFrame frame = new MainFrame();
+      frame.setJMenuBar(createMenuBar());
       frame.setVisible(true);
     });
   }

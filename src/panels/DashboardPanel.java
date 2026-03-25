@@ -13,10 +13,10 @@ import java.awt.*;
  * ASSIGNED TO: Student 2 (Main Frame / Dashboard Owner)
  * 
  * TODO for Student 2:
- * - Display total number of students
+ * - Display total number of students -done
  * - Add a welcome message or app logo
- * - Show summary statistics (e.g., average age, total count)
- * - Add a refresh button to update the stats
+ * - Show summary statistics (e.g., average age, total count) -done
+ * - Add a refresh button to update the stats -done
  * - Make it visually appealing (use colors, larger fonts, icons)
  */
 public class DashboardPanel extends JPanel {
