@@ -54,7 +54,7 @@ public class AddStudentPanel extends JPanel {
         gbc.weightx = 1.0;
         idField = new JTextField(20);
         formPanel.add(idField, gbc);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        //gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Name
         gbc.gridx = 0;
@@ -66,7 +66,7 @@ public class AddStudentPanel extends JPanel {
         gbc.weightx = 1.0;
         nameField = new JTextField(20);
         formPanel.add(nameField, gbc);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        //gbc.fill = GridBagConstraints.HORIZONTAL;
 
         //email
         gbc.gridx = 0;
@@ -78,7 +78,7 @@ public class AddStudentPanel extends JPanel {
         gbc.weightx = 1.0;
         emailField = new JTextField(20);
         formPanel.add(emailField, gbc);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        //gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // course
         gbc.gridx = 0;
@@ -90,7 +90,7 @@ public class AddStudentPanel extends JPanel {
         gbc.weightx = 1.0;
         courseField = new JTextField(20);
         formPanel.add(courseField, gbc);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        //gbc.fill = GridBagConstraints.HORIZONTAL;
 
         //address
         gbc.gridx = 0;
@@ -102,7 +102,7 @@ public class AddStudentPanel extends JPanel {
         gbc.weightx = 1.0;
         addressField = new JTextField(20);
         formPanel.add(addressField, gbc);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        //gbc.fill = GridBagConstraints.HORIZONTAL;
 
         //age
         gbc.gridx = 0;
@@ -114,7 +114,7 @@ public class AddStudentPanel extends JPanel {
         gbc.weightx = 1.0;
         ageField = new JTextField(20);
         formPanel.add(ageField, gbc);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        //gbc.fill = GridBagConstraints.HORIZONTAL;
 
         add(formPanel, BorderLayout.CENTER);
 
