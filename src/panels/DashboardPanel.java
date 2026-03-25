@@ -28,7 +28,7 @@ public class DashboardPanel extends JPanel {
 
     // Welcome Message
     JLabel title = new JLabel("Welcome to the Student Management System!", SwingConstants.CENTER);
-    title.setFont(new Font("Arial", Font.BOLD, 28));
+    title.setFont(new Font("Times New Roman", Font.BOLD, 28));
     title.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
     add(title, BorderLayout.NORTH);
 
