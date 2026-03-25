@@ -21,6 +21,7 @@ import java.awt.*;
  */
 public class DashboardPanel extends JPanel {
   private JLabel countLabel;
+  private JLabel average;
 
   public DashboardPanel() {
     setLayout(new BorderLayout());
@@ -51,18 +52,21 @@ public class DashboardPanel extends JPanel {
     centerPanel.add(Box.createVerticalStrut(20));
 
     //Average
-      double sum = 0;
-      double average_total =0;
-      for (int i = 0; i < DataStore.getInstance().getCount(); i++ ){
-          sum = DataStore.getInstance().getAllStudents().get(i).getAge() + sum;
-      }
-      average_total = sum/ DataStore.getInstance().getCount();
-      JLabel average = new JLabel("Average Age: " + average_total);
-      average.setFont(new Font("Arial", Font.PLAIN, 18));
-      average.setAlignmentX(Component.CENTER_ALIGNMENT);
-      centerPanel.add(average);
 
-      centerPanel.add(Box.createVerticalStrut(40));
+          double sum = 0;
+          double average_total = 0;
+          for (int i = 0; i < DataStore.getInstance().getCount(); i++) {
+              sum = DataStore.getInstance().getAllStudents().get(i).getAge() + sum;
+          }
+
+          average_total = sum / DataStore.getInstance().getCount();
+          average = new JLabel("Average Age: " + average_total);
+
+          average.setFont(new Font("Arial", Font.PLAIN, 18));
+          average.setAlignmentX(Component.CENTER_ALIGNMENT);
+          centerPanel.add(average);
+
+          centerPanel.add(Box.createVerticalStrut(40));
 
       //Button
     JButton refreshBtn = new JButton("Refresh");
