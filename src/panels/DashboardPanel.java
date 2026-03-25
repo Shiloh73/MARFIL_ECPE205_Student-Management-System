@@ -46,6 +46,14 @@ public class DashboardPanel extends JPanel {
     refreshBtn.addActionListener(e -> refreshData());
     centerPanel.add(refreshBtn);
 
+    centerPanel.add(Box.createVerticalStrut(20));
+
+    JLabel summary_statistics = new JLabel("Summary Statistics:");
+    summary_statistics.setFont(new Font("Arial", Font.PLAIN, 18));
+    summary_statistics.setAlignmentX(Component.CENTER_ALIGNMENT);
+    centerPanel.add(summary_statistics);
+
+
     add(centerPanel, BorderLayout.CENTER);
   }
 
