@@ -93,6 +93,7 @@ public class DashboardPanel extends JPanel {
       for (int i = 0; i < DataStore.getInstance().getCount(); i++) {
           sum = DataStore.getInstance().getAllStudents().get(i).getAge() + sum;
       }
+      average_total = sum / DataStore.getInstance().getCount();
     average.setText("Average Age: " + average_total);
   }
 }
