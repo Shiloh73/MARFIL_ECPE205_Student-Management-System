@@ -42,6 +42,10 @@ public class SearchStudentPanel extends JPanel {
     searchField = new JTextField(20);
     searchPanel.add(searchField);
 
+    //Search Filter
+      String[] info = new String[] {"Name", "ID,", "Age", "Course"};
+      JComboBox<String> infolist = new JComboBox<>();
+
     JButton searchBtn = new JButton("Search");
     searchBtn.addActionListener(e -> performSearch());
     searchPanel.add(searchBtn);
@@ -56,6 +60,9 @@ public class SearchStudentPanel extends JPanel {
     add(searchPanel, BorderLayout.NORTH);
 
     // Results area
+      String[] columns = {"ID", "NAME", "AGE", "COURSE"};
+
+
     JPanel resultsWrapper = new JPanel(new BorderLayout());
     resultsWrapper.setBorder(BorderFactory.createEmptyBorder(10, 20, 20, 20));
 
