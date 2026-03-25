@@ -14,7 +14,7 @@ package model;
 public class Student {
   private String id, email, course;
   private String name, address;
-  private int age, yearLVL, contactNumber;
+  private int age;
 
     public String getEmail() {
         return email;
@@ -40,31 +40,14 @@ public class Student {
         this.address = address;
     }
 
-    public int getYearLVL() {
-        return yearLVL;
-    }
-
-    public void setYearLVL(int yearLVL) {
-        this.yearLVL = yearLVL;
-    }
-
-    public int getContactNumber() {
-        return contactNumber;
-    }
-
-    public void setContactNumber(int contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-
-    public Student(String id, String name, int age, String course, int yearLVL, String address, String email, int contactNumber) {
+    public Student(String id, String name, int age, String course, String address, String email) {
         this.id = id;
         this.email = email;
         this.course = course;
         this.name = name;
         this.address = address;
         this.age = age;
-        this.yearLVL = yearLVL;
-        this.contactNumber = contactNumber;
+
     }
 
     public Student(String id, String name, int age) {
@@ -109,14 +92,13 @@ public class Student {
 
   @Override
   public String toString() {
-    return id + " - " + name + " (Age: " + age + ") - " + course + yearLVL + " - " + email + " - " +
-            contactNumber + " - " + address;
+    return id + " - " + name + " (Age: " + age + ") - " + course + " - " + email + " - " + " - " + address;
   }
 
   /**
    * Returns student data as an Object array, useful for JTable rows.
    */
   public Object[] toTableRow() {
-    return new Object[] { id, name, age, course, yearLVL, email, contactNumber, address };
+    return new Object[] { id, name, age, course, email, address };
   }
 }

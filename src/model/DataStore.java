@@ -52,8 +52,8 @@ public class DataStore {
   public void updateStudent(int index, Student student) {
       if (index >= 0 && index < students.size()) {
           students.remove(index);
+          students.add(student);
       }
-      students.add(student);
   }
 
   /** Find a student by ID */
