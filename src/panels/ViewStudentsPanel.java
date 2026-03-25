@@ -48,7 +48,7 @@ public class ViewStudentsPanel extends JPanel {
 
     table.setRowHeight(50);
     table.setShowHorizontalLines(true);
-    table.setShowVerticalLines(false);
+    table.setShowVerticalLines(true);
     table.setIntercellSpacing(new Dimension(1, 1));
 
 

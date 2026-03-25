@@ -122,6 +122,10 @@ public class EditStudentPanel extends JPanel {
       idField.setText(tableModel.getValueAt(row, 0).toString());
       nameField.setText(tableModel.getValueAt(row, 1).toString());
       ageField.setText(tableModel.getValueAt(row, 2).toString());
+//      courseField.setText(tableModel.getValueAt(row, 3).toString());
+//      addressField.setText(tableModel.getValueAt(row, 4).toString());
+//      emailField.setText(tableModel.getValueAt(row, 5).toString());
+
     }
   }
 
@@ -134,8 +138,11 @@ public class EditStudentPanel extends JPanel {
 
     String name = nameField.getText().trim();
     String ageText = ageField.getText().trim();
+    String courseText = courseField.getText().trim();
+    String addressText = addressField.getText().trim();
+    String emailText = emailField.getText().trim();
 
-    if (name.isEmpty() || ageText.isEmpty()) {
+    if (name.isEmpty() || ageText.isEmpty() || courseText.isEmpty() ||addressText.isEmpty() || emailText.isEmpty() ) {
       JOptionPane.showMessageDialog(this, "Fields cannot be empty.", "Validation Error", JOptionPane.WARNING_MESSAGE);
       return;
     }
@@ -179,5 +186,8 @@ public class EditStudentPanel extends JPanel {
     idField.setText("");
     nameField.setText("");
     ageField.setText("");
+    courseField.setText("");
+    addressField.setText("");
+    emailField.setText("");
   }
 }
