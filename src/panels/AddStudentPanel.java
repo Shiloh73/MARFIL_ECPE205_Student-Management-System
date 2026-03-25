@@ -54,7 +54,6 @@ public class AddStudentPanel extends JPanel {
         gbc.weightx = 1.0;
         idField = new JTextField(20);
         formPanel.add(idField, gbc);
-        //gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Name
         gbc.gridx = 0;
