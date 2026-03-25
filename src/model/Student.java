@@ -12,7 +12,7 @@ package model;
  * - Add a method to return data as an Object[] array for table display
  */
 public class Student {
-  private String id;
+  private String id, email, course;
   private String name;
   private int age;
 

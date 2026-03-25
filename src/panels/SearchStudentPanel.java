@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import java.util.ArrayList;
-
 /**
  * Panel for searching students by ID or name.
  * 
@@ -16,7 +15,7 @@ import java.util.ArrayList;
  * TODO for Student 5:
  * - Implement search by name (partial match / contains)
  * - Add search filter options (search by ID, by name, by course, etc.)
- * - Display results in a table or formatted list
+ *  -Display results in a table or formatted list
  * - Handle case-insensitive search
  * - Show "No results found" message when appropriate
  * - Add a "Clear Search" button
@@ -36,16 +35,13 @@ public class SearchStudentPanel extends JPanel {
 
     // Search bar
     JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-    searchPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+    searchPanel.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 20));
 
-    searchPanel.add(new JLabel("Search by ID or Name:"));
+    searchPanel.add(new JLabel("Search by ID, Name, Age, Class: "));
     searchField = new JTextField(20);
     searchPanel.add(searchField);
 
     //Search Filter
-      String[] info = new String[] {"Name", "ID,", "Age", "Course"};
-      JComboBox<String> infolist = new JComboBox<>();
-
     JButton searchBtn = new JButton("Search");
     searchBtn.addActionListener(e -> performSearch());
     searchPanel.add(searchBtn);
@@ -60,9 +56,6 @@ public class SearchStudentPanel extends JPanel {
     add(searchPanel, BorderLayout.NORTH);
 
     // Results area
-      String[] columns = {"ID", "NAME", "AGE", "COURSE"};
-
-
     JPanel resultsWrapper = new JPanel(new BorderLayout());
     resultsWrapper.setBorder(BorderFactory.createEmptyBorder(10, 20, 20, 20));
 
@@ -93,8 +86,10 @@ public class SearchStudentPanel extends JPanel {
 
     for (Student s : allStudents) {
       if (s.getId().toLowerCase().contains(query)
-          || s.getName().toLowerCase().contains(query)) {
+          || s.getName().toLowerCase().contains(query) || String.valueOf(s.getAge()).contains(query) || s.getCourse().toLowerCase().contains(query)
+              || s.getEmail().toLowerCase().contains(query) || s.getAddress().toLowerCase().contains(query)) {
         results.add(s);
+
       }
     }
 
@@ -102,10 +97,10 @@ public class SearchStudentPanel extends JPanel {
       resultArea.setText("No students found matching: \"" + searchField.getText().trim() + "\"");
     } else {
       StringBuilder sb = new StringBuilder();
-      sb.append(String.format("%-15s %-25s %-5s%n", "ID", "Name", "Age"));
+      sb.append(String.format("%-15s %-25s %-5s%n", "ID", "Name", "Age", "Course", "Email", "Address"));
       sb.append("-".repeat(45)).append("\n");
       for (Student s : results) {
-        sb.append(String.format("%-15s %-25s %-5d%n", s.getId(), s.getName(), s.getAge()));
+        sb.append(String.format("%-15s %-25s %-5d%n", s.getId(), s.getName(), s.getAge()), s.getCourse(), s.getEmail(), s.getAddress());
       }
       sb.append("\nFound ").append(results.size()).append(" result(s).");
       resultArea.setText(sb.toString());
