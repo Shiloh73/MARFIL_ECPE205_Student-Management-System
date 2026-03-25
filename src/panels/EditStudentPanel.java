@@ -141,6 +141,7 @@ public class EditStudentPanel extends JPanel {
     student.setName(name);
     student.setAge(age);
 
+
     JOptionPane.showMessageDialog(this, "Student updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
     loadData();
   }

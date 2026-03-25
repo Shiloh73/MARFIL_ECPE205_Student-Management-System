@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,15 +49,11 @@ public class DataStore {
     }
   }
 
-  public void updateStudent(String id) {
-      for (Student s : students) {
-          if (s.getId().equals(id)) {
-              String email, course, name, address;
-              int age, yearLVL, contactNumber;
-
-
-          }
+  private void updateStudent(int index, Student student) {
+      if (index >= 0 && index < students.size()) {
+          students.remove(index);
       }
+      students.add(student);
   }
 
   /** Find a student by ID */
