@@ -8,6 +8,7 @@ import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.util.List;
 import java.util.ArrayList;
+
 /**
  * Panel for searching students by ID or name.
  *
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  * TODO for Student 5:
  * - Implement search by name (partial match / contains)
  * - Add search filter options (search by ID, by name, by course, etc.)
- *  -Display results in a table or formatted list
+ * -Display results in a table or formatted list
  * - Handle case-insensitive search
  * - Show "No results found" message when appropriate
  * - Add a "Clear Search" button
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 public class SearchStudentPanel extends JPanel {
   private JTextField searchField;
+  private JComboBox<String> filterBox; // ADDED: Dropdown for filter options
   private JTable resultTable;
   private StudentTableModel tableModel;
 
@@ -39,11 +41,16 @@ public class SearchStudentPanel extends JPanel {
 
     // Search Bar
     JPanel searchBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
-    searchBar.add(new JLabel("Search: "));
+
+    searchBar.add(new JLabel("Filter By: "));
+    String[] filters = {"All", "ID", "Name", "Course"};
+    filterBox = new JComboBox<>(filters);
+    searchBar.add(filterBox);
+
+    searchBar.add(new JLabel(" Search: "));
     searchField = new JTextField(20);
     searchBar.add(searchField);
 
-    //Search Filter
     JButton searchBtn = new JButton("Search");
     searchBtn.addActionListener(e -> performSearch());
     searchBar.add(searchBtn);
@@ -51,6 +58,7 @@ public class SearchStudentPanel extends JPanel {
     JButton clearBtn = new JButton("Clear");
     clearBtn.addActionListener(e -> {
       searchField.setText("");
+      filterBox.setSelectedIndex(0);
       tableModel.clearTable();
     });
     searchBar.add(clearBtn);
@@ -67,6 +75,7 @@ public class SearchStudentPanel extends JPanel {
 
   private void performSearch() {
     String query = searchField.getText().trim().toLowerCase();
+    String filter = (String) filterBox.getSelectedItem();
 
     if (query.isEmpty()) {
       JOptionPane.showMessageDialog(this, "Please enter a search term.", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -77,12 +86,29 @@ public class SearchStudentPanel extends JPanel {
     List<Student> results = new ArrayList<>();
 
     for (Student s : allStudents) {
-      if (s.getId().toLowerCase().contains(query)
-              || s.getName().toLowerCase().contains(query)
-              || String.valueOf(s.getAge()).contains(query)
-              || s.getCourse().toLowerCase().contains(query)
-              || s.getEmail().toLowerCase().contains(query)
-              || s.getAddress().toLowerCase().contains(query)) {
+      String id = s.getId() != null ? s.getId().toLowerCase() : "";
+      String name = s.getName() != null ? s.getName().toLowerCase() : "";
+      String course = s.getCourse() != null ? s.getCourse().toLowerCase() : "";
+      String email = s.getEmail() != null ? s.getEmail().toLowerCase() : "";
+      String address = s.getAddress() != null ? s.getAddress().toLowerCase() : "";
+      String ageStr = String.valueOf(s.getAge());
+
+      boolean isMatch = false;
+
+      // CHANGED: Apply the specific filter selected by the user
+      if (filter.equals("ID")) {
+        isMatch = id.contains(query);
+      } else if (filter.equals("Name")) {
+        isMatch = name.contains(query);
+      } else if (filter.equals("Course")) {
+        isMatch = course.contains(query);
+      } else {
+        // Default to "All"
+        isMatch = id.contains(query) || name.contains(query) || ageStr.contains(query) ||
+                course.contains(query) || email.contains(query) || address.contains(query);
+      }
+
+      if (isMatch) {
         results.add(s);
       }
     }
