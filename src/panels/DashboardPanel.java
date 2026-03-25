@@ -1,8 +1,10 @@
 package panels;
 
 import model.DataStore;
+import model.Student;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 
 /**
@@ -46,12 +48,27 @@ public class DashboardPanel extends JPanel {
     refreshBtn.addActionListener(e -> refreshData());
     centerPanel.add(refreshBtn);
 
-    centerPanel.add(Box.createVerticalStrut(20));
+    centerPanel.add(Box.createVerticalStrut(40));
 
+
+    //Summary Statistics
     JLabel summary_statistics = new JLabel("Summary Statistics:");
     summary_statistics.setFont(new Font("Arial", Font.PLAIN, 18));
     summary_statistics.setAlignmentX(Component.CENTER_ALIGNMENT);
     centerPanel.add(summary_statistics);
+      centerPanel.add(Box.createVerticalStrut(20));
+
+    //Average
+      double sum = 0;
+      double average_total =0;
+    for (int i = 0; i < DataStore.getInstance().getCount(); i++ ){
+         sum = DataStore.getInstance().getAllStudents().get(i).getAge() + sum;
+    }
+      average_total = sum/ DataStore.getInstance().getCount();
+      JLabel average = new JLabel("Average: " + average_total);
+      average.setFont(new Font("Arial", Font.PLAIN, 15));
+      average.setAlignmentX(Component.CENTER_ALIGNMENT);
+      centerPanel.add(average);
 
 
     add(centerPanel, BorderLayout.CENTER);
