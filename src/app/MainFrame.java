@@ -6,8 +6,11 @@ import panels.SearchStudentPanel;
 import panels.EditStudentPanel;
 import panels.DashboardPanel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 
 /**
  * Main application frame. Assembles all panels into a tabbed layout.
@@ -29,7 +32,9 @@ public class MainFrame extends JFrame {
     setMinimumSize(new Dimension(700, 500));
     setLocationRelativeTo(null); // Center on screen
 
-    // --- Tabbed Pane: each tab is owned by a different student ---
+      // --- Tabbed Pane: each tab is owned by a different student ---
+
+
     JTabbedPane tabbedPane = new JTabbedPane();
 
     tabbedPane.addTab("Dashboard", new DashboardPanel());

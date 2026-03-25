@@ -26,8 +26,8 @@ public class DashboardPanel extends JPanel {
   public DashboardPanel() {
     setLayout(new BorderLayout());
 
-    // Title
-    JLabel title = new JLabel("Dashboard", SwingConstants.CENTER);
+    // Welcome Message
+    JLabel title = new JLabel("Welcome to the Student Management System!", SwingConstants.CENTER);
     title.setFont(new Font("Arial", Font.BOLD, 28));
     title.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
     add(title, BorderLayout.NORTH);
@@ -37,8 +37,8 @@ public class DashboardPanel extends JPanel {
     centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
     centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 10, 40));
 
-    //Welcome Message
-      JLabel welcome_message = new JLabel("Welcome to the Student Management System!");
+    //Dashboard
+      JLabel welcome_message = new JLabel("Dashboard");
       welcome_message.setFont(new Font("Arial", Font.BOLD, 20));
       welcome_message.setAlignmentX(Component.CENTER_ALIGNMENT);
       centerPanel.add(welcome_message);
