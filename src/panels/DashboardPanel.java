@@ -36,6 +36,13 @@ public class DashboardPanel extends JPanel {
     centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
     centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
+    //Summary Statistics
+      JLabel summary_statistics = new JLabel("Summary Statistics:");
+      summary_statistics.setFont(new Font("Arial", Font.BOLD, 20));
+      summary_statistics.setAlignmentX(Component.CENTER_ALIGNMENT);
+      centerPanel.add(summary_statistics);
+      centerPanel.add(Box.createVerticalStrut(20));
+
     countLabel = new JLabel("Total Students: " + DataStore.getInstance().getCount());
     countLabel.setFont(new Font("Arial", Font.PLAIN, 18));
     countLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -43,32 +50,26 @@ public class DashboardPanel extends JPanel {
 
     centerPanel.add(Box.createVerticalStrut(20));
 
+    //Average
+      double sum = 0;
+      double average_total =0;
+      for (int i = 0; i < DataStore.getInstance().getCount(); i++ ){
+          sum = DataStore.getInstance().getAllStudents().get(i).getAge() + sum;
+      }
+      average_total = sum/ DataStore.getInstance().getCount();
+      JLabel average = new JLabel("Average Age: " + average_total);
+      average.setFont(new Font("Arial", Font.PLAIN, 18));
+      average.setAlignmentX(Component.CENTER_ALIGNMENT);
+      centerPanel.add(average);
+
+      centerPanel.add(Box.createVerticalStrut(40));
+
+      //Button
     JButton refreshBtn = new JButton("Refresh");
     refreshBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
     refreshBtn.addActionListener(e -> refreshData());
     centerPanel.add(refreshBtn);
 
-    centerPanel.add(Box.createVerticalStrut(40));
-
-
-    //Summary Statistics
-    JLabel summary_statistics = new JLabel("Summary Statistics:");
-    summary_statistics.setFont(new Font("Arial", Font.PLAIN, 18));
-    summary_statistics.setAlignmentX(Component.CENTER_ALIGNMENT);
-    centerPanel.add(summary_statistics);
-      centerPanel.add(Box.createVerticalStrut(20));
-
-    //Average
-      double sum = 0;
-      double average_total =0;
-    for (int i = 0; i < DataStore.getInstance().getCount(); i++ ){
-         sum = DataStore.getInstance().getAllStudents().get(i).getAge() + sum;
-    }
-      average_total = sum/ DataStore.getInstance().getCount();
-      JLabel average = new JLabel("Average: " + average_total);
-      average.setFont(new Font("Arial", Font.PLAIN, 15));
-      average.setAlignmentX(Component.CENTER_ALIGNMENT);
-      centerPanel.add(average);
 
 
     add(centerPanel, BorderLayout.CENTER);
