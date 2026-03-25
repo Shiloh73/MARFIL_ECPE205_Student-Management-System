@@ -120,7 +120,7 @@ public class AddStudentPanel extends JPanel {
 
         // Button panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
 
         JButton addBtn = new JButton("Add Student");
         addBtn.addActionListener(e -> addStudent());
