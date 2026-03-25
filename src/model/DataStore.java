@@ -1,14 +1,15 @@
 package model;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Central in-memory data store. All panels read/write through this class.
  * Data is stored in an ArrayList of Student objects (no database).
- * 
+ *
  * ASSIGNED TO: Student 1 (Data Model Owner)
- * 
+ *
  * TODO for Student 1:
  * - Add methods as other teammates need them (e.g., updateStudent,
  * searchByName)
@@ -48,10 +49,26 @@ public class DataStore {
     }
   }
 
+  public void updateStudent(int index, Student student) {
+    if (index >= 0 && index < students.size()) {
+      students.remove(index);
+      students.add(student);
+    }
+  }
+
   /** Find a student by ID */
   public Student findById(String id) {
     for (Student s : students) {
       if (s.getId().equals(id)) {
+        return s;
+      }
+    }
+    return null;
+  }
+
+  public Student searchByName(String name) {
+    for (Student s : students) {
+      if (s.getName().equals(name)) {
         return s;
       }
     }

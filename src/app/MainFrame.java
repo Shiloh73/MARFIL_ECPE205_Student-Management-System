@@ -36,7 +36,7 @@ public class MainFrame extends JFrame {
     tabbedPane.addTab("Add Student", new AddStudentPanel());
     tabbedPane.addTab("View Students", new ViewStudentsPanel());
     tabbedPane.addTab("Search Student", new SearchStudentPanel());
-    tabbedPane.addTab("Edit / Delete", new EditStudentPanel());
+    tabbedPane.addTab("Edit / Delete Students", new EditStudentPanel());
 
     add(tabbedPane, BorderLayout.CENTER);
   }
