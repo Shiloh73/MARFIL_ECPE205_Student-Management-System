@@ -12,11 +12,72 @@ package model;
  * - Add a method to return data as an Object[] array for table display
  */
 public class Student {
-  private String id;
-  private String name;
-  private int age;
+  private String id, email, course;
+  private String name, address;
+  private int age, yearLVL, contactNumber;
 
-  public Student(String id, String name, int age) {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getYearLVL() {
+        return yearLVL;
+    }
+
+    public void setYearLVL(int yearLVL) {
+        this.yearLVL = yearLVL;
+    }
+
+    public int getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(int contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public Student(String id, String email, String course, String name, String address, int age, int yearLVL, int contactNumber) {
+        this.id = id;
+        this.email = email;
+        this.course = course;
+        this.name = name;
+        this.address = address;
+        this.age = age;
+        this.yearLVL = yearLVL;
+        this.contactNumber = contactNumber;
+    }
+
+    public Student(String id, String email, String course, String name, int age, int yearLVL, int contactNumber) {
+        this.id = id;
+        this.email = email;
+        this.course = course;
+        this.name = name;
+        this.age = age;
+        this.yearLVL = yearLVL;
+        this.contactNumber = contactNumber;
+    }
+
+    public Student(String id, String name, int age) {
     this.id = id;
     this.name = name;
     this.age = age;
@@ -57,6 +118,6 @@ public class Student {
    * Returns student data as an Object array, useful for JTable rows.
    */
   public Object[] toTableRow() {
-    return new Object[] { id, name, age };
+    return new Object[] { id, name, age, email, course, yearLVL, contactNumber, address };
   }
 }

@@ -48,6 +48,17 @@ public class DataStore {
     }
   }
 
+  public void updateStudent(String id) {
+      for (Student s : students) {
+          if (s.getId().equals(id)) {
+              String email, course, name, address;
+              int age, yearLVL, contactNumber;
+
+
+          }
+      }
+  }
+
   /** Find a student by ID */
   public Student findById(String id) {
     for (Student s : students) {
@@ -56,6 +67,15 @@ public class DataStore {
       }
     }
     return null;
+  }
+
+  public Student searchByName(String name) {
+      for (Student s : students) {
+          if (s.getName().equals(name)) {
+              return s;
+          }
+      }
+      return null;
   }
 
   /** Get total number of students */
