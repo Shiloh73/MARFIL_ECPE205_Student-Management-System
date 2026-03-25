@@ -56,22 +56,12 @@ public class Student {
         this.contactNumber = contactNumber;
     }
 
-    public Student(String id, String email, String course, String name, String address, int age, int yearLVL, int contactNumber) {
+    public Student(String id, String name, int age, String course, int yearLVL, String address, String email, int contactNumber) {
         this.id = id;
         this.email = email;
         this.course = course;
         this.name = name;
         this.address = address;
-        this.age = age;
-        this.yearLVL = yearLVL;
-        this.contactNumber = contactNumber;
-    }
-
-    public Student(String id, String email, String course, String name, int age, int yearLVL, int contactNumber) {
-        this.id = id;
-        this.email = email;
-        this.course = course;
-        this.name = name;
         this.age = age;
         this.yearLVL = yearLVL;
         this.contactNumber = contactNumber;
@@ -102,22 +92,31 @@ public class Student {
   }
 
   public void setName(String name) {
+        if (name == null) {
+            System.out.println("Name is empty!");
+            return;
+        }
     this.name = name;
   }
 
   public void setAge(int age) {
+        if (age < 0) {
+            System.out.println("Age must be positive!");
+            return;
+        }
     this.age = age;
   }
 
   @Override
   public String toString() {
-    return id + " - " + name + " (Age: " + age + ")";
+    return id + " - " + name + " (Age: " + age + ") - " + course + yearLVL + " - " + email + " - " +
+            contactNumber + " - " + address;
   }
 
   /**
    * Returns student data as an Object array, useful for JTable rows.
    */
   public Object[] toTableRow() {
-    return new Object[] { id, name, age, email, course, yearLVL, contactNumber, address };
+    return new Object[] { id, name, age, course, yearLVL, email, contactNumber, address };
   }
 }
