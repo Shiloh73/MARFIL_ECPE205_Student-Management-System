@@ -10,10 +10,10 @@ import java.util.List;
 
 /**
  * Panel for editing and deleting students.
- * 
+ *
  * ASSIGNED TO: Student 4 (Edit / Delete Feature Owner)
  * or split between Student 4 & Student 5 if preferred
- * 
+ *
  * TODO:
  * - Allow selecting a row and editing the student's fields
  * - Add "Update" button to save changes to the DataStore
@@ -24,7 +24,7 @@ import java.util.List;
 public class EditStudentPanel extends JPanel {
   private DefaultTableModel tableModel;
   private JTable table;
-  private JTextField idField, nameField, ageField;
+  private JTextField idField, nameField, ageField, courseField,addressField, emailField;
 
   public EditStudentPanel() {
     setLayout(new BorderLayout());
@@ -36,7 +36,7 @@ public class EditStudentPanel extends JPanel {
     add(title, BorderLayout.NORTH);
 
     // Table
-    String[] columns = { "Student ID", "Name", "Age" };
+    String[] columns = { "Student ID", "Name", "Age", "Course", "Address" , "Email" };
     tableModel = new DefaultTableModel(columns, 0) {
       @Override
       public boolean isCellEditable(int row, int column) {
@@ -45,6 +45,7 @@ public class EditStudentPanel extends JPanel {
     };
     table = new JTable(tableModel);
     table.setRowHeight(25);
+    table.getTableHeader().setReorderingAllowed(false);
     table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     table.getSelectionModel().addListSelectionListener(e -> {
       if (!e.getValueIsAdjusting()) {
@@ -52,10 +53,24 @@ public class EditStudentPanel extends JPanel {
       }
     });
 
+    table.setRowHeight(50);
+    table.setIntercellSpacing(new Dimension(1, 1));
+
+    table.getColumnModel().getColumn(0).setPreferredWidth(90);
+    table.getColumnModel().getColumn(1).setPreferredWidth(150);
+    table.getColumnModel().getColumn(2).setPreferredWidth(40);
+    table.getColumnModel().getColumn(3).setPreferredWidth(120);
+    table.getColumnModel().getColumn(4).setPreferredWidth(180);
+    table.getColumnModel().getColumn(5).setPreferredWidth(160);
+
+    table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
+    table.setFont(new Font("Arial", Font.PLAIN, 13));
+    table.setGridColor(new Color(220, 220, 220));
+    table.setShowGrid(true);
+
     JScrollPane scrollPane = new JScrollPane(table);
     add(scrollPane, BorderLayout.CENTER);
 
-    // Edit form + buttons at bottom
     JPanel bottomPanel = new JPanel(new BorderLayout());
     bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 15, 20));
 
@@ -72,6 +87,18 @@ public class EditStudentPanel extends JPanel {
     formPanel.add(new JLabel("Age:"));
     ageField = new JTextField(5);
     formPanel.add(ageField);
+
+    formPanel.add(new JLabel("Course:"));
+    courseField = new JTextField(15);
+    formPanel.add(courseField);
+
+    formPanel.add(new JLabel("Address:"));
+    addressField = new JTextField(20);
+    formPanel.add(addressField);
+
+    formPanel.add(new JLabel("Email:"));
+    emailField = new JTextField(20);
+    formPanel.add(emailField);
 
     bottomPanel.add(formPanel, BorderLayout.CENTER);
 
@@ -107,10 +134,17 @@ public class EditStudentPanel extends JPanel {
   private void populateFields() {
     int row = table.getSelectedRow();
     if (row >= 0) {
-      idField.setText(tableModel.getValueAt(row, 0).toString());
-      nameField.setText(tableModel.getValueAt(row, 1).toString());
-      ageField.setText(tableModel.getValueAt(row, 2).toString());
+      idField.setText(safe(tableModel.getValueAt(row, 0)));
+      nameField.setText(safe(tableModel.getValueAt(row, 1)));
+      ageField.setText(safe(tableModel.getValueAt(row, 2)));
+      courseField.setText(safe(tableModel.getValueAt(row, 3)));
+      addressField.setText(safe(tableModel.getValueAt(row, 4)));
+      emailField.setText(safe(tableModel.getValueAt(row, 5)));
     }
+  }
+
+  private String safe(Object value) {
+    return value != null ? value.toString() : "";
   }
 
   private void updateStudent() {
@@ -122,8 +156,11 @@ public class EditStudentPanel extends JPanel {
 
     String name = nameField.getText().trim();
     String ageText = ageField.getText().trim();
+    String courseText = courseField.getText().trim();
+    String addressText = addressField.getText().trim();
+    String emailText = emailField.getText().trim();
 
-    if (name.isEmpty() || ageText.isEmpty()) {
+    if (name.isEmpty() || ageText.isEmpty() || courseText.isEmpty() ||addressText.isEmpty() || emailText.isEmpty() ) {
       JOptionPane.showMessageDialog(this, "Fields cannot be empty.", "Validation Error", JOptionPane.WARNING_MESSAGE);
       return;
     }
@@ -133,18 +170,18 @@ public class EditStudentPanel extends JPanel {
       age = Integer.parseInt(ageText);
     } catch (NumberFormatException ex) {
       JOptionPane.showMessageDialog(this, "Age must be a valid number.", "Validation Error",
-          JOptionPane.WARNING_MESSAGE);
+              JOptionPane.WARNING_MESSAGE);
       return;
     }
 
     Student student = DataStore.getInstance().getAllStudents().get(row);
     student.setName(name);
     student.setAge(age);
-    DataStore.getInstance().updateStudent(row, student);
+    student.setCourse(courseText);
+    student.setAddress(addressText);
+    student.setEmail(emailText);
 
-
-
-      JOptionPane.showMessageDialog(this, "Student updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(this, "Student updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
     loadData();
   }
 
@@ -156,8 +193,8 @@ public class EditStudentPanel extends JPanel {
     }
 
     int confirm = JOptionPane.showConfirmDialog(this,
-        "Are you sure you want to delete this student?",
-        "Confirm Delete", JOptionPane.YES_NO_OPTION);
+            "Are you sure you want to delete this student?",
+            "Confirm Delete", JOptionPane.YES_NO_OPTION);
 
     if (confirm == JOptionPane.YES_OPTION) {
       DataStore.getInstance().removeStudent(row);
@@ -170,5 +207,8 @@ public class EditStudentPanel extends JPanel {
     idField.setText("");
     nameField.setText("");
     ageField.setText("");
+    courseField.setText("");
+    addressField.setText("");
+    emailField.setText("");
   }
 }
