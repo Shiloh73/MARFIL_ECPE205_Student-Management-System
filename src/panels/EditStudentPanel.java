@@ -24,7 +24,7 @@ import java.util.List;
 public class EditStudentPanel extends JPanel {
   private DefaultTableModel tableModel;
   private JTable table;
-  private JTextField idField, nameField, ageField;
+  private JTextField idField, nameField, ageField, courseField,addressField, emailField;
 
   public EditStudentPanel() {
     setLayout(new BorderLayout());
@@ -36,7 +36,7 @@ public class EditStudentPanel extends JPanel {
     add(title, BorderLayout.NORTH);
 
     // Table
-    String[] columns = { "Student ID", "Name", "Age",  "Contact Number", "School Name" };
+    String[] columns = { "Student ID", "Name", "Age", "Course", "Address" , "Email" };
     tableModel = new DefaultTableModel(columns, 0) {
       @Override
       public boolean isCellEditable(int row, int column) {
@@ -72,6 +72,18 @@ public class EditStudentPanel extends JPanel {
     formPanel.add(new JLabel("Age:"));
     ageField = new JTextField(5);
     formPanel.add(ageField);
+
+    formPanel.add(new JLabel("Course:"));
+    courseField = new JTextField(5);
+    formPanel.add(courseField);
+
+    formPanel.add(new JLabel("Address:"));
+    addressField = new JTextField(5);
+    formPanel.add(addressField);
+
+    formPanel.add(new JLabel("Email:"));
+    emailField = new JTextField(5);
+    formPanel.add(emailField);
 
     bottomPanel.add(formPanel, BorderLayout.CENTER);
 
