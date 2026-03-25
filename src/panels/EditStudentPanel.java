@@ -140,9 +140,11 @@ public class EditStudentPanel extends JPanel {
     Student student = DataStore.getInstance().getAllStudents().get(row);
     student.setName(name);
     student.setAge(age);
+    DataStore.getInstance().updateStudent(row, student);
 
 
-    JOptionPane.showMessageDialog(this, "Student updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+      JOptionPane.showMessageDialog(this, "Student updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
     loadData();
   }
 

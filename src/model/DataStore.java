@@ -49,7 +49,7 @@ public class DataStore {
     }
   }
 
-  private void updateStudent(int index, Student student) {
+  public void updateStudent(int index, Student student) {
       if (index >= 0 && index < students.size()) {
           students.remove(index);
       }
