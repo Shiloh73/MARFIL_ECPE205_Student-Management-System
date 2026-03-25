@@ -52,6 +52,9 @@ public class EditStudentPanel extends JPanel {
       }
     });
 
+    table.setRowHeight(50);
+    table.setIntercellSpacing(new Dimension(1, 1));
+
     JScrollPane scrollPane = new JScrollPane(table);
     add(scrollPane, BorderLayout.CENTER);
 

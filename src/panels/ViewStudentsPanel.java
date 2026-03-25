@@ -47,9 +47,8 @@ public class ViewStudentsPanel extends JPanel {
     table.getTableHeader().setReorderingAllowed(false);
 
     table.setRowHeight(50);
-    table.setShowHorizontalLines(true);
-    table.setShowVerticalLines(true);
     table.setIntercellSpacing(new Dimension(1, 1));
+
 
 
     JScrollPane scrollPane = new JScrollPane(table);
