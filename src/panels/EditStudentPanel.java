@@ -89,15 +89,15 @@ public class EditStudentPanel extends JPanel {
     formPanel.add(ageField);
 
     formPanel.add(new JLabel("Course:"));
-    courseField = new JTextField(5);
+    courseField = new JTextField(15);
     formPanel.add(courseField);
 
     formPanel.add(new JLabel("Address:"));
-    addressField = new JTextField(5);
+    addressField = new JTextField(20);
     formPanel.add(addressField);
 
     formPanel.add(new JLabel("Email:"));
-    emailField = new JTextField(5);
+    emailField = new JTextField(20);
     formPanel.add(emailField);
 
     bottomPanel.add(formPanel, BorderLayout.CENTER);
