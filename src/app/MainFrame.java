@@ -76,6 +76,7 @@ public class MainFrame extends JFrame {
       MainFrame frame = new MainFrame();
       frame.setJMenuBar(createMenuBar());
         ImageIcon image1 = new ImageIcon("C:\\Users\\1010036\\Downloads\\5850276.png");
+        //Image image = image1.getImage().getScaledInstance(800, 500, Image.SCALE_DEFAULT);
         frame.add(new JLabel(image1));
       frame.setVisible(true);
     });
